@@ -44,8 +44,8 @@ def r_ascii_w_bcr(infilename, outfilename):
 		ypixels = counter
 		bit2nm = 0.01 
 		nm2bit = 1/bit2nm
-	print(max(num_sequence))
-	print(len(num_sequence))
+	#print(max(num_sequence))
+	#print(len(num_sequence))
 	with open(outfilename,'a+', encoding = 'ascii') as bcr_file_text:
 		header = "fileformat = {}\nxlength = {}\nylength = {}\nxpixels = {}\nypixels = {}\nbit2nm = {}\n".format("bcrstm",width,height,xpixels,ypixels,bit2nm)
 		#bcr_file_text.write ("fileformat = {}\n".format("bcrstm"))
@@ -66,8 +66,8 @@ def r_ascii_w_bcr(infilename, outfilename):
 	for i in range(0, len(num_sequence)):
 		bin_seq = (bin_seq + int(nm2bit * num_sequence[i]).to_bytes(2,'little')) # 16bit integer
 		seq_cnt += 1 
-	print(seq_cnt)
-	print(bin_seq)
+	#print(seq_cnt)
+	#print(bin_seq)
 	with open(outfilename,'ab+') as bcr_file_bin:
 		bcr_file_bin.write(bin_seq)		
 	return(0)
@@ -81,7 +81,7 @@ def Main():
 	#parser.add_argument("--endianity", help = "Byte order depending on your system, default is 1", type=int, default=1)
 	args = parser.parse_args()
 	if ((args.output_file is not None) and (args.ascii_file is not None)):
-		print(r_ascii_w_bcr(args.ascii_file, args.output_file))
+		r_ascii_w_bcr(args.ascii_file, args.output_file)
 	else: 
 		print('\n Input must include input ascii file and output bcr file \n')
 		return(0)	
